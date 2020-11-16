@@ -5,12 +5,12 @@ package ru.iteco.behavioral.chain.bancomat.banknote;
  *
  * @author Ilya_Sukhachev
  */
-public abstract class Banknote {
+public class Banknote {
 
     protected CurrencyType currency;
-    protected String value;
+    protected int value;
 
-    public Banknote(CurrencyType currency, String value) {
+    public Banknote(CurrencyType currency, int value) {
         this.currency = currency;
         this.value = value;
     }
@@ -19,7 +19,11 @@ public abstract class Banknote {
         return currency;
     }
 
-    public String getValue() {
+    public int getValue() {
         return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }

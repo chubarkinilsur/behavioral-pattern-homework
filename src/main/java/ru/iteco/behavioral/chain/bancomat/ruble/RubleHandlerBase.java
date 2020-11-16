@@ -1,18 +1,13 @@
-package ru.iteco.behavioral.chain.bancomat.dollar;
+package ru.iteco.behavioral.chain.bancomat.ruble;
 
 import ru.iteco.behavioral.chain.bancomat.banknote.BanknoteHandler;
 import ru.iteco.behavioral.chain.bancomat.banknote.CurrencyType;
 
-/**
- * TenRubleHandler.
- *
- * @author Ilya_Sukhachev
- */
-public abstract class DollarHandlerBase extends BanknoteHandler {
+public abstract class RubleHandlerBase extends BanknoteHandler {
 
-    private final CurrencyType type = CurrencyType.USD;
+    private CurrencyType type = CurrencyType.RUB;
 
-    protected DollarHandlerBase(BanknoteHandler nextHandler) {
+    protected RubleHandlerBase(BanknoteHandler nextHandler) {
         super(nextHandler);
     }
 

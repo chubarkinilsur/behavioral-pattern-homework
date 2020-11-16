@@ -1,10 +1,13 @@
 package ru.iteco.behavioral.chain.bancomat;
 
+import ru.iteco.behavioral.chain.bancomat.banknote.Banknote;
 import ru.iteco.behavioral.chain.bancomat.banknote.BanknoteHandler;
 import ru.iteco.behavioral.chain.bancomat.dollar.FiftyDollarHandler;
 import ru.iteco.behavioral.chain.bancomat.dollar.HundredDollarHandler;
 import ru.iteco.behavioral.chain.bancomat.dollar.TenDollarHandler;
-import ru.iteco.behavioral.chain.bancomat.ruble.TenRubleHandler;
+import ru.iteco.behavioral.chain.bancomat.ruble.FiveHundredRubleHandler;
+import ru.iteco.behavioral.chain.bancomat.ruble.HundredRubleHandler;
+import ru.iteco.behavioral.chain.bancomat.ruble.ThousandRubleHandler;
 
 /**
  * Bancomat.
@@ -15,19 +18,24 @@ public class Bancomat {
     private BanknoteHandler handler;
 
     public Bancomat() {
-        handler = new TenRubleHandler(null);
-        handler = new TenDollarHandler(handler);
+        handler = new TenDollarHandler(null);
         handler = new FiftyDollarHandler(handler);
         handler = new HundredDollarHandler(handler);
+        handler = new HundredRubleHandler(handler);
+        handler = new FiveHundredRubleHandler(handler);
+        handler = new ThousandRubleHandler(handler);
     }
 
-    public boolean validate(String banknote) {
+    public String cash(Banknote banknote) {
+        if (validate(banknote)) {
+            return banknote.getValue() + "=" +handler.cash(banknote);
+        } else {
+            return banknote.getCurrency().toString() + " что то пощло не так";
+        }
+
+    }
+
+    private boolean validate(Banknote banknote) {
         return handler.validate(banknote);
-    }
-
-    public String cash(String banknote) {
-        if(handler.cash(Integer.parseInt(banknote)))
-                    return "Выдача " + banknote;
-        else return "Что то пошло не так";
     }
 }

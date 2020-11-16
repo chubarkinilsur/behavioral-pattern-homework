@@ -31,10 +31,10 @@ public abstract class BanknoteHandler {
             } else {
                 cashe.append(getValue() + "*" + banknote.getValue() / getValue() + " + ");
                 banknote.setValue(banknote.getValue() - banknote.getValue() / getValue() * getValue());
-                return nextHandler != null ? nextHandler.cash(banknote) : cashe +" "+banknote.getValue() % getValue()+ " не валидная сумма";
+                return nextHandler != null ? nextHandler.cash(banknote) : cashe.append(" " + banknote.getValue() % getValue() + " не валидная сумма").toString();
             }
         } else {
-            return nextHandler != null ? nextHandler.cash(banknote) : cashe +" "+banknote.getValue() % getValue()+ " не валидная сумма";
+            return nextHandler != null ? nextHandler.cash(banknote) : cashe.append(" " + banknote.getValue() % getValue() + " не валидная сумма").toString();
         }
 
     }
